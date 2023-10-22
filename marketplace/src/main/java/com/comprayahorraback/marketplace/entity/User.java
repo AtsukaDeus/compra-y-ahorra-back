@@ -2,7 +2,7 @@ package com.comprayahorraback.marketplace.entity;
 
 import java.util.HashSet;
 
-import org.hibernate.mapping.Set;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,8 +29,7 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    public User(Long id, String run, String name, String email, Set<Role> roles){
-        this.id = id;
+    public User(String run, String name, String email, Set<Role> roles){
         this.run = run;
         this.name = name;
         this.email = email;

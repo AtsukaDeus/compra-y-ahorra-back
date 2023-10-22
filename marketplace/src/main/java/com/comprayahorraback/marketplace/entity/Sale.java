@@ -10,7 +10,8 @@ import jakarta.persistence.ManyToMany;
 
 import java.time.LocalDate;
 
-import org.hibernate.mapping.List;
+import java.util.List;
+
 
 @Entity
 public class Sale {
@@ -29,8 +30,7 @@ public class Sale {
     )
     private List<Product> products_sold;
 
-    public Sale(Long id, LocalDate sale_date, double net, double iva, double gross, List<Product> products_sold){   
-        this.id = id;
+    public Sale(LocalDate sale_date, double net, double iva, double gross, List<Product> products_sold){   
         this.sale_date = sale_date;
         this.net = net;
         this.iva = iva;
