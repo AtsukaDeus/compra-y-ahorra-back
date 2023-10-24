@@ -25,6 +25,10 @@ public class SaleController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createSale(@RequestBody Sale saleRequest) {
+        // if(saleRequest.getUserCA() == null) {
+        //     return new ResponseEntity<>("Debe tener un usuario referenciado!", HttpStatus.BAD_REQUEST);
+        // }
+
         try {
             Sale createdSale = saleService.createSale(saleRequest);
             return new ResponseEntity<>(createdSale, HttpStatus.CREATED);

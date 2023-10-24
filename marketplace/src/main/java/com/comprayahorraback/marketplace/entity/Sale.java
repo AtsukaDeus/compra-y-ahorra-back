@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,6 +26,10 @@ public class Sale {
     private double net;
     private double iva;
     private double gross;
+    @ManyToOne
+    @JoinColumn(name = "userca_id")
+    private UserCa userca;
+
     @ManyToMany
     @JoinTable(
         name = "sale_product",
@@ -34,11 +39,13 @@ public class Sale {
     private List<Product> products_sold;
 
 
+
     public Long getId(){return this.id;}
     public LocalDate getSaleDate(){return this.sale_date;}
     public double getNet(){return this.net;}
     public double getIva(){return this.iva;}
     public double getGross(){return this.gross;}
+    public UserCa getUserCA(){return this.userca;}
     public List<Product> getProductsSold(){return this.products_sold;}
 
     public void setSaleDate(LocalDate sale_date){this.sale_date = sale_date;}
