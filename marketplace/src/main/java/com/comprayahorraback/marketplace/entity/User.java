@@ -1,16 +1,12 @@
 package com.comprayahorraback.marketplace.entity;
 
-import java.util.HashSet;
-
-import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class User {
@@ -21,13 +17,10 @@ public class User {
     private String name;
     private String email;
     private Boolean isActive;
-    @ManyToMany
-    @JoinTable(
-        name = "users_roles",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 
 
