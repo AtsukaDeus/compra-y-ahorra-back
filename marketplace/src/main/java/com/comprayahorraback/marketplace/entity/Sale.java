@@ -1,5 +1,6 @@
 package com.comprayahorraback.marketplace.entity;
 
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,8 +10,9 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 import java.time.LocalDate;
-
 import java.util.List;
+
+import com.comprayahorraback.marketplace.configurations.LocalDateConverter;
 
 
 @Entity
@@ -18,7 +20,8 @@ public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate sale_date;
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate sale_date;    
     private double net;
     private double iva;
     private double gross;
@@ -30,13 +33,18 @@ public class Sale {
     )
     private List<Product> products_sold;
 
-    public Sale(LocalDate sale_date, double net, double iva, double gross, List<Product> products_sold){   
-        this.sale_date = sale_date;
-        this.net = net;
-        this.iva = iva;
-        this.gross = gross;
-        this.products_sold = products_sold;
 
-    }
+    public Long getId(){return this.id;}
+    public LocalDate getSaleDate(){return this.sale_date;}
+    public double getNet(){return this.net;}
+    public double getIva(){return this.iva;}
+    public double getGross(){return this.gross;}
+    public List<Product> getProductsSold(){return this.products_sold;}
+
+    public void setSaleDate(LocalDate sale_date){this.sale_date = sale_date;}
+    public void setNet(double net){this.net = net;}
+    public void setIva(double iva){this.iva = iva;}
+    public void setGross(double gross){this.gross = gross;}
+    public void setProductsSold(List<Product> products_sold){this.products_sold = products_sold;}
 
 }

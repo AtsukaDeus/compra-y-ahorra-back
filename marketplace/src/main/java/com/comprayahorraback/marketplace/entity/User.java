@@ -29,12 +29,6 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    public User(String run, String name, String email, Set<Role> roles){
-        this.run = run;
-        this.name = name;
-        this.email = email;
-        this.isActive = true;
-        this.roles = roles;
-    }
+
 
 }
