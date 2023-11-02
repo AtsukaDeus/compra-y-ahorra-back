@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import com.comprayahorraback.marketplace.entity.Product;
 import com.comprayahorraback.marketplace.service.ProductService;
 
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/product")

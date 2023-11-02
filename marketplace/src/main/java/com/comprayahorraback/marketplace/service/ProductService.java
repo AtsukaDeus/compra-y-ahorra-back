@@ -14,7 +14,7 @@ public class ProductService {
     
     public Product createProduct(Product product){
 
-        product.setArrivalDate(LocalDate.now());
+        product.setArrival_date(LocalDate.now());
 
         return productRepository.save(product);
     }
@@ -22,7 +22,7 @@ public class ProductService {
     public Product updateProduct(Long productId, Product updatedProduct) {
 
         if (productRepository.existsById(productId)) {
-            updatedProduct.setID(productId);
+            updatedProduct.setId(productId);
             return productRepository.save(updatedProduct);
         } else {
 

@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.comprayahorraback.marketplace.dto_request.SaleRequest;
 import com.comprayahorraback.marketplace.entity.Sale;
+import com.comprayahorraback.marketplace.mappers.SaleRequestToEntity;
 import com.comprayahorraback.marketplace.repository.SaleRepository;
 
 @Service
@@ -17,9 +19,12 @@ public class SaleService {
 
     // Services
     // create a sale in the database
-    public Sale createSale(Sale sale){
+    public void createSale(SaleRequest saleReq){
 
-        sale.setSaleDate(
+        SaleRequestToEntity saleMapper = new SaleRequestToEntity(); // to use the method toEntity
+        Sale sale = saleMapper.toEntity(saleReq);
+
+        sale.setSale_date(
             LocalDate.now()
         );
         
@@ -33,7 +38,7 @@ public class SaleService {
             )
         );
 
-        return saleRepository.save(sale);
+        saleRepository.save(sale);
     }
 
     // get a sale by id from the database 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.comprayahorraback.marketplace.dto_request.SaleRequest;
 import com.comprayahorraback.marketplace.entity.Sale;
 import com.comprayahorraback.marketplace.service.SaleService;
 
@@ -24,14 +25,10 @@ public class SaleController {
     private SaleService saleService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createSale(@RequestBody Sale saleRequest) {
-        // if(saleRequest.getUserCA() == null) {
-        //     return new ResponseEntity<>("Debe tener un usuario referenciado!", HttpStatus.BAD_REQUEST);
-        // }
-
+    public ResponseEntity<?> createSale(@RequestBody SaleRequest saleRequest) {
         try {
-            Sale createdSale = saleService.createSale(saleRequest);
-            return new ResponseEntity<>(createdSale, HttpStatus.CREATED);
+            saleService.createSale(saleRequest);
+            return new ResponseEntity<>(HttpStatus.CREATED);
 
         } catch (ConstraintViolationException e) {
             return new ResponseEntity<>("Error de validación: " + e.getMessage(), HttpStatus.BAD_REQUEST);
