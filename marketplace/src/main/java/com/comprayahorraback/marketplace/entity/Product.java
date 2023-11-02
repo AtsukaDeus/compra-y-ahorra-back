@@ -13,6 +13,14 @@ import java.time.LocalDate;
 
 import com.comprayahorraback.marketplace.configurations.LocalDateConverter;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class Product {
     
@@ -29,60 +37,5 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Product(String name, double price, LocalDate arrival_date, Category category, int stock){
-        this.name = name;
-        this.price = price;
-        this.arrival_date = arrival_date;
-        this.category = category;
-        this.stock = stock;
-    }
-
-        public Long getId(){
-            return id;
-        }
-
-        public void setID(Long id){
-            this.id = id;
-        }
-    
-        public String getName() {
-            return name;
-        }
-    
-        public void setName(String name) {
-            this.name = name;
-        }
-        
-        public double getPrice() {
-            return price;
-        }
-    
-        public void setPrice(double price) {
-            this.price = price;
-        }
-    
-        public LocalDate getArrivalDate() {
-            return arrival_date;
-        }
-    
-        public void setArrivalDate(LocalDate arrival_date) {
-            this.arrival_date = arrival_date;
-        }
-    
-        public int getStock() {
-            return stock;
-        }
-    
-        public void setStock(int stock) {
-            this.stock = stock;
-        }
-    
-        public Category getCategory() {
-            return category;
-        }
-    
-        public void setCategory(Category category) {
-            this.category = category;
-        }
 }
 

@@ -15,7 +15,14 @@ import java.util.List;
 
 import com.comprayahorraback.marketplace.configurations.LocalDateConverter;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class Sale {
     @Id
@@ -26,6 +33,7 @@ public class Sale {
     private double net;
     private double iva;
     private double gross;
+
     @ManyToOne
     @JoinColumn(name = "userca_id")
     private UserCa userca;
@@ -38,20 +46,5 @@ public class Sale {
     )
     private List<Product> products_sold;
 
-
-
-    public Long getId(){return this.id;}
-    public LocalDate getSaleDate(){return this.sale_date;}
-    public double getNet(){return this.net;}
-    public double getIva(){return this.iva;}
-    public double getGross(){return this.gross;}
-    public UserCa getUserCA(){return this.userca;}
-    public List<Product> getProductsSold(){return this.products_sold;}
-
-    public void setSaleDate(LocalDate sale_date){this.sale_date = sale_date;}
-    public void setNet(double net){this.net = net;}
-    public void setIva(double iva){this.iva = iva;}
-    public void setGross(double gross){this.gross = gross;}
-    public void setProductsSold(List<Product> products_sold){this.products_sold = products_sold;}
 
 }
