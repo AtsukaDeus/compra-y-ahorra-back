@@ -10,4 +10,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProductRequest {
     private Long id;
+    private int quantity;
 }
