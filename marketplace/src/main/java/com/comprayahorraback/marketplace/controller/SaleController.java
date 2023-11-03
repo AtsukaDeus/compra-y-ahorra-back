@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.comprayahorraback.marketplace.dto_request.SaleRequest;
+import com.comprayahorraback.marketplace.dto_response.SaleResponse;
 import com.comprayahorraback.marketplace.entity.Sale;
 import com.comprayahorraback.marketplace.service.SaleService;
 
@@ -43,10 +44,10 @@ public class SaleController {
     public ResponseEntity<?> getSale(@PathVariable Long id){
         try{
 
-            Sale sale = saleService.getSale(id);
+            SaleResponse saleResponse = saleService.getSale(id);
             
-            if(sale != null){
-                return new ResponseEntity<>(sale, HttpStatus.OK);
+            if(saleResponse != null){
+                return new ResponseEntity<>(saleResponse, HttpStatus.OK);
             }
             else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
