@@ -63,7 +63,7 @@ public class SaleController {
     }
 
     @GetMapping("/get/all/today")
-    public ResponseEntity<?> getSales(){
+    public ResponseEntity<?> getSalesToDay(){
         try{
 
             List<SaleResponse> salesResponses = saleService.getSalesFromToday();
@@ -80,6 +80,46 @@ public class SaleController {
 
     }
 
+
+    @GetMapping("/get/all/week")
+    public ResponseEntity<?> getSalesWeek(){
+        
+        try{
+
+            List<SaleResponse> salesResponses = saleService.getSalesFromWeek();
+            return new ResponseEntity<>(salesResponses, HttpStatus.OK);
+
+
+        } catch (ConstraintViolationException e) {
+            return new ResponseEntity<>("Error de validación: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error interno del servidor: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            
+        }
+
+    }   
+
+
+    
+    @GetMapping("/get/all/month")
+    public ResponseEntity<?> getSalesMonth(){
+        
+        try{
+
+            List<SaleResponse> salesResponses = saleService.getSalesFromWeek();
+            return new ResponseEntity<>(salesResponses, HttpStatus.OK);
+
+
+        } catch (ConstraintViolationException e) {
+            return new ResponseEntity<>("Error de validación: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error interno del servidor: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            
+        }
+
+    } 
 
 
 

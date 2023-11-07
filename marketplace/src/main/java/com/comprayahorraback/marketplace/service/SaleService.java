@@ -1,5 +1,6 @@
 package com.comprayahorraback.marketplace.service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,7 @@ public class SaleService {
     }
 
 
-    // get all sales from today
+    // This method retrieves all the sales for the day.
     public List<SaleResponse> getSalesFromToday() {
         
         List<Sale> sales = new ArrayList<Sale>();
@@ -101,6 +102,55 @@ public class SaleService {
     }
 
 
+    // this method retrieves the sales for the week.
+    public List<SaleResponse> getSalesFromWeek(){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate startDate = currentDate;
+        LocalDate endDate = currentDate;
 
-    
+        List<Sale> sales = new ArrayList<Sale>();
+        List<SaleResponse> salesResponses = new ArrayList<SaleResponse>();
+
+        if (currentDate.getDayOfWeek() != DayOfWeek.MONDAY) {
+            startDate = currentDate.with(DayOfWeek.MONDAY);
+        }
+
+        endDate = startDate.plusDays(6);
+
+        sales = saleRepository.findSalesBySaleDateWeek(startDate, endDate);
+
+        for(int i=0; i<sales.size(); i++){
+            salesResponses.add(
+                this.getSale(sales.get(i).getId())
+            );
+        }
+
+        return salesResponses;
+    }
+
+
+    // this method retrieves the sales for the month.
+    public List<SaleResponse> getSalesFromMonth(){
+        
+        List<Sale> sales = new ArrayList<Sale>();
+        List<SaleResponse> salesResponses = new ArrayList<SaleResponse>();
+
+        LocalDate currentDate = LocalDate.now();
+
+        int year = currentDate.getYear();
+        int month = currentDate.getMonthValue();
+
+        sales = saleRepository.findSalesByCurrentMonth(year, month, currentDate);
+
+        for(int i=0; i<sales.size(); i++){
+            salesResponses.add(
+                this.getSale(sales.get(i).getId())
+            );
+        }
+
+        return salesResponses;
+    }
+
+
+
 }
