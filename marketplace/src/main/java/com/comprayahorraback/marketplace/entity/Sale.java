@@ -1,14 +1,14 @@
 package com.comprayahorraback.marketplace.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -36,15 +36,9 @@ public class Sale {
 
     @ManyToOne
     @JoinColumn(name = "userca_id")
-    private UserCa userca;
+    private Userca userca;
 
-    @ManyToMany
-    @JoinTable(
-        name = "sale_product",
-        joinColumns = @JoinColumn(name = "sale_id"),
-        inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products_sold;
-
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+    private List<SaleProduct> saleProducts;
 
 }

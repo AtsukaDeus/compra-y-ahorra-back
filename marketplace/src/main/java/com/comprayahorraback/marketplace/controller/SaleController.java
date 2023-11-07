@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.comprayahorraback.marketplace.dto_request.SaleRequest;
-import com.comprayahorraback.marketplace.entity.Sale;
+import com.comprayahorraback.marketplace.dto_response.SaleResponse;
 import com.comprayahorraback.marketplace.service.SaleService;
 
 @RestController
@@ -28,7 +28,7 @@ public class SaleController {
     public ResponseEntity<?> createSale(@RequestBody SaleRequest saleRequest) {
         try {
             saleService.createSale(saleRequest);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>("Venta creada!", HttpStatus.CREATED);
 
         } catch (ConstraintViolationException e) {
             return new ResponseEntity<>("Error de validación: " + e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -43,10 +43,10 @@ public class SaleController {
     public ResponseEntity<?> getSale(@PathVariable Long id){
         try{
 
-            Sale sale = saleService.getSale(id);
+            SaleResponse saleResponse = saleService.getSale(id);
             
-            if(sale != null){
-                return new ResponseEntity<>(sale, HttpStatus.OK);
+            if(saleResponse != null){
+                return new ResponseEntity<>(saleResponse, HttpStatus.OK);
             }
             else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -62,12 +62,12 @@ public class SaleController {
         }
     }
 
-    @GetMapping("/get/all")
+    @GetMapping("/get/all/today")
     public ResponseEntity<?> getSales(){
         try{
 
-            List<Sale> sales = saleService.getSales();
-            return new ResponseEntity<>(sales, HttpStatus.OK);
+            List<SaleResponse> salesResponses = saleService.getSalesFromToday();
+            return new ResponseEntity<>(salesResponses, HttpStatus.OK);
 
 
         } catch (ConstraintViolationException e) {
