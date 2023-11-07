@@ -12,8 +12,7 @@ import com.comprayahorraback.marketplace.dto_response.SaleResponse;
 import com.comprayahorraback.marketplace.entity.Product;
 import com.comprayahorraback.marketplace.entity.Sale;
 import com.comprayahorraback.marketplace.entity.SaleProduct;
-import com.comprayahorraback.marketplace.mappers.SaleEntityToResponse;
-import com.comprayahorraback.marketplace.mappers.SaleRequestToEntity;
+import com.comprayahorraback.marketplace.mappers.SaleMapper;
 import com.comprayahorraback.marketplace.repository.ProductRepository;
 import com.comprayahorraback.marketplace.repository.SaleProductRepository;
 import com.comprayahorraback.marketplace.repository.SaleRepository;
@@ -34,8 +33,8 @@ public class SaleService {
     // create a sale in the database
     public void createSale(SaleRequest saleReq){
 
-        SaleRequestToEntity saleMapper = new SaleRequestToEntity(); // to use the method toEntity
-        Sale sale = saleMapper.toEntity(saleReq);
+        SaleMapper saleMapper = new SaleMapper(); // to use the method toEntity
+        Sale sale = saleMapper.saleRequestToSaleEntity(saleReq);
 
         sale.setSale_date(
             LocalDate.now()
@@ -54,11 +53,11 @@ public class SaleService {
         saleRepository.save(sale);
     }
 
+    
     // get a sale by id from the database 
     public SaleResponse getSale(Long id) {
 
-        SaleEntityToResponse saleEntityToResponse = new SaleEntityToResponse();
-
+        SaleMapper saleMapper = new SaleMapper();
         SaleResponse saleResponse = new SaleResponse();
         Sale sale = new Sale();
 
@@ -77,17 +76,28 @@ public class SaleService {
             products.add(product);
         }
 
-        saleResponse = saleEntityToResponse.toSaleResponse(sale, saleProducts, products);
+        saleResponse = saleMapper.saleEntityToSaleResponse(sale, saleProducts, products);
         
         return saleResponse;
 
-        // return saleRepository.findById(id).orElse(null);
     }
 
 
-    // get all sales from the database
-    public List<Sale> getSales() {
-        return saleRepository.findAll();
+    // get all sales from today
+    public List<SaleResponse> getSalesFromToday() {
+        
+        List<Sale> sales = new ArrayList<Sale>();
+        List<SaleResponse> salesResponses = new ArrayList<SaleResponse>();
+
+        sales = saleRepository.findSalesBySaleDateToday();
+        
+        for(int i=0; i<sales.size(); i++){
+            salesResponses.add(
+                this.getSale(sales.get(i).getId())
+            );
+        }
+        
+        return salesResponses;
     }
 
 
