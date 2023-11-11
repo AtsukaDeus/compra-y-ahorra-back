@@ -107,7 +107,7 @@ public class SaleController {
         
         try{
 
-            List<SaleResponse> salesResponses = saleService.getSalesFromWeek();
+            List<SaleResponse> salesResponses = saleService.getSalesFromMonth();
             return new ResponseEntity<>(salesResponses, HttpStatus.OK);
 
 

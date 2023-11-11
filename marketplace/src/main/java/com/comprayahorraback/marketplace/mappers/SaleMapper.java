@@ -3,7 +3,7 @@ package com.comprayahorraback.marketplace.mappers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.comprayahorraback.marketplace.dto_request.ProductRequest;
+import com.comprayahorraback.marketplace.dto_request.ProductSaleRequest;
 import com.comprayahorraback.marketplace.dto_request.SaleRequest;
 import com.comprayahorraback.marketplace.dto_response.ProductResponse;
 import com.comprayahorraback.marketplace.dto_response.SaleResponse;
@@ -26,7 +26,7 @@ public class SaleMapper {
         Userca userca = new Userca();
         List<SaleProduct> sale_products = new ArrayList<SaleProduct>();
 
-        List<ProductRequest> productList = saleReq.getProducts_sold();
+        List<ProductSaleRequest> productList = saleReq.getProducts_sold();
 
         for(int i=0; i<productList.size(); i++){
             Product product = new Product();

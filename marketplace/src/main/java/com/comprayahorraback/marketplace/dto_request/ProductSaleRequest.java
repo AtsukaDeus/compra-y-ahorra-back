@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductRequest {
+public class ProductSaleRequest {
     private Long id;
     private int quantity;
 }
