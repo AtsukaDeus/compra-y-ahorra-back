@@ -37,12 +37,14 @@ public class SecurityConfiguration {
                 
                                 ).hasAnyRole("ADMIN", "CLIENTE")
 
-                // Apis that can access the client
+                // Apis that can accessed by the client
+                .requestMatchers("/userca/update/password/{id}"
+                                    
+                                ).hasAnyRole("CLIENT")
 
-
-                // Apis that can access anyone
+                // Apis that can accessed by anyone
                 .requestMatchers("/auth/**").permitAll()
-                
+
             .anyRequest()
             .authenticated()
             .and()

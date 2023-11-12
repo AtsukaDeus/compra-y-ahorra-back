@@ -25,7 +25,7 @@ public class AuthService {
             .run(registerRequest.getRun())
             .name(registerRequest.getName())
             .password(registerRequest.getPassword())
-            .role(Role.ROLE_ADMIN)
+            .role(Role.ROLE_CLIENT)
             .email(registerRequest.getEmail())
             .build();
         

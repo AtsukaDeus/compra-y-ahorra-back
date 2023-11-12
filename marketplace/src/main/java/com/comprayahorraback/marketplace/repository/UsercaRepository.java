@@ -10,5 +10,5 @@ import com.comprayahorraback.marketplace.entity.Userca;
 public interface UsercaRepository extends JpaRepository<Userca, Long>{
 
     Optional<Userca> findByEmail(String email);
-    
+
 }
