@@ -40,6 +40,8 @@ public class Userca implements UserDetails{
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private boolean locked;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -63,7 +65,7 @@ public class Userca implements UserDetails{
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !locked;
     }
 
     @Override

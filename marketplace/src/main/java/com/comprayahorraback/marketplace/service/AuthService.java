@@ -27,8 +27,9 @@ public class AuthService {
             .run(registerRequest.getRun())
             .name(registerRequest.getName())
             .password(registerRequest.getPassword())
-            .role(Role.ROLE_CLIENT)
+            .role(Role.ROLE_CLIENT) // ROLE_CLIENT or ROLE_ADMIN
             .email(registerRequest.getEmail())
+            .locked(false)
             .build();
         
         usercaRepository.save(userca);
@@ -52,20 +53,23 @@ public class AuthService {
                 userca.getEmail().equals(authRequest.getEmail()) &&
                 userca.getPassword().equals(authRequest.getPassword())
             )
-        ){
-            return null;
-        }   
+        ) return null;
+
+        if(userca.isAccountNonLocked()){
+            var jwtToken = jwtService.generateToken(userca);
+
+            UsercaMapper usercaMapper = new UsercaMapper();
+            UsercaResponse usercaResponse = usercaMapper.usercaEntityToResponse(userca);
+
+            return AuthResponse.builder()
+                    .token(jwtToken)
+                    .usercaResponse(usercaResponse)
+                    .build();
         
+        } else{
+            return null;
+        }
 
-        var jwtToken = jwtService.generateToken(userca);
-
-        UsercaMapper usercaMapper = new UsercaMapper();
-        UsercaResponse usercaResponse = usercaMapper.usercaEntityToResponse(userca);
-
-        return AuthResponse.builder()
-                .token(jwtToken)
-                .usercaResponse(usercaResponse)
-                .build();
     }
 
 

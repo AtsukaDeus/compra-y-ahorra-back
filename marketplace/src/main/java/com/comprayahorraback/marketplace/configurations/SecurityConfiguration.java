@@ -28,7 +28,8 @@ public class SecurityConfiguration {
             .authorizeHttpRequests()
                 //APIs that can be accessed by the admin.
                 .requestMatchers("/product/create",
-                                            "/sale/get/all/**"
+                                            "/sale/get/all/**",
+                                            "admin/**"
                                     
                                 ).hasAnyRole("ADMIN")
                 
