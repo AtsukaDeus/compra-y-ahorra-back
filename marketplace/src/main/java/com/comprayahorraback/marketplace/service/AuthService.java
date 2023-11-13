@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import com.comprayahorraback.marketplace.dto_request.AuthRequest;
 import com.comprayahorraback.marketplace.dto_request.RegisterRequest;
 import com.comprayahorraback.marketplace.dto_response.AuthResponse;
+import com.comprayahorraback.marketplace.dto_response.UsercaResponse;
 import com.comprayahorraback.marketplace.entity.Role;
 import com.comprayahorraback.marketplace.entity.Userca;
+import com.comprayahorraback.marketplace.mappers.UsercaMapper;
 import com.comprayahorraback.marketplace.repository.UsercaRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -57,8 +59,12 @@ public class AuthService {
 
         var jwtToken = jwtService.generateToken(userca);
 
+        UsercaMapper usercaMapper = new UsercaMapper();
+        UsercaResponse usercaResponse = usercaMapper.usercaEntityToResponse(userca);
+
         return AuthResponse.builder()
                 .token(jwtToken)
+                .usercaResponse(usercaResponse)
                 .build();
     }
 
