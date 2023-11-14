@@ -39,7 +39,8 @@ public class SecurityConfiguration {
                                 ).hasAnyRole("ADMIN", "CLIENTE")
 
                 // Apis that can accessed by the client
-                .requestMatchers("/userca/update/password/{id}"
+                .requestMatchers("/userca/update/password/{id}",
+                                            "/comment/**"
                                     
                                 ).hasAnyRole("CLIENT")
 
