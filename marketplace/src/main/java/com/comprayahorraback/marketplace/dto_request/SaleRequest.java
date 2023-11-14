@@ -13,5 +13,5 @@ import lombok.Setter;
 public class SaleRequest {
     private double net;
     private Long user_id;
-    private List<ProductRequest> products_sold;
+    private List<ProductSaleRequest> products_sold;
 }
