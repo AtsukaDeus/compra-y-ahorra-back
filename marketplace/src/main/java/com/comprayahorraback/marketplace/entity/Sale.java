@@ -36,7 +36,7 @@ public class Sale {
 
     @ManyToOne
     @JoinColumn(name = "userca_id")
-    private UserCa userca;
+    private Userca userca;
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
     private List<SaleProduct> saleProducts;

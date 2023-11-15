@@ -10,7 +10,7 @@ import com.comprayahorraback.marketplace.dto_response.SaleResponse;
 import com.comprayahorraback.marketplace.entity.Product;
 import com.comprayahorraback.marketplace.entity.Sale;
 import com.comprayahorraback.marketplace.entity.SaleProduct;
-import com.comprayahorraback.marketplace.entity.UserCa;
+import com.comprayahorraback.marketplace.entity.Userca;
 
 
 public class SaleMapper {
@@ -23,7 +23,7 @@ public class SaleMapper {
     public Sale saleRequestToSaleEntity(SaleRequest saleReq){
 
         Sale sale = new Sale();
-        UserCa userca = new UserCa();
+        Userca userca = new Userca();
         List<SaleProduct> sale_products = new ArrayList<SaleProduct>();
 
         List<ProductSaleRequest> productList = saleReq.getProducts_sold();

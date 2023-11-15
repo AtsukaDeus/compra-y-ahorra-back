@@ -38,35 +38,19 @@ public class JwtService {
     }
 
     
-    // public String generateToken(UserDetails userDetails){
-    //     return generateToken(new HashMap<>(), userDetails);
-    // }
-
-
-    // public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
-    //     return Jwts
-    //             .builder()
-    //             .setClaims(extraClaims)
-    //             .setSubject(userDetails.getUsername())
-    //             .setIssuedAt(new Date(System.currentTimeMillis()))
-    //             .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-    //             .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-    //             .compact();
-    // }
-    
     public String generateToken(UserDetails userDetails) {
-    Map<String, Object> claims = new HashMap<>();
-    // Obtén los roles del usuario y agrégales al mapa de claims
-    claims.put("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
-    
-    return Jwts
-            .builder()
-            .setClaims(claims)
-            .setSubject(userDetails.getUsername())
-            .setIssuedAt(new Date(System.currentTimeMillis()))
-            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-            .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-            .compact();
+        Map<String, Object> claims = new HashMap<>();
+        
+        claims.put("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
+        
+        return Jwts
+                .builder()
+                .setClaims(claims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails){

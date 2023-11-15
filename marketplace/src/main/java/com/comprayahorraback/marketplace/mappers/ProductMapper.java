@@ -1,6 +1,7 @@
 package com.comprayahorraback.marketplace.mappers;
 
-import com.comprayahorraback.marketplace.dto_request.create.ProductCreateRequest;
+import com.comprayahorraback.marketplace.dto_request.ProductCreateRequest;
+import com.comprayahorraback.marketplace.dto_response.ProductGetResponse;
 import com.comprayahorraback.marketplace.entity.Category;
 import com.comprayahorraback.marketplace.entity.Product;
 
@@ -14,16 +15,23 @@ public class ProductMapper {
         product.setPrice(createProductRequest.getPrice());
         product.setStock(createProductRequest.getStock());
         category.setId(createProductRequest.getCategory_id());
+        
         product.setCategory(category);
 
         return product;
     }
 
-/*     public Product mapToDeleteEntityProduct(ProductDelete productDelete){
-        Product product = new Product();
+    public ProductGetResponse mapToProductGetResponse(Product product){
+        ProductGetResponse productGetResponse = new ProductGetResponse();
 
-        product.setId(productDelete.getId());
-        return product;
-    } */
+        productGetResponse.setId(product.getId());
+        productGetResponse.setName(product.getName());
+        productGetResponse.setPrice(product.getPrice());
+        productGetResponse.setStock(product.getStock());
+        productGetResponse.setCategory_name(product.getCategory().getName());
+        productGetResponse.setCategory_id(product.getCategory().getId());
+
+        return productGetResponse;
+    }
     
 }
