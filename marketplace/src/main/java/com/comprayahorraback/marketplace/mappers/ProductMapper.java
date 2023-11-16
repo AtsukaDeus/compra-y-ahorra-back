@@ -30,6 +30,7 @@ public class ProductMapper {
         productGetResponse.setStock(product.getStock());
         productGetResponse.setCategory_name(product.getCategory().getName());
         productGetResponse.setCategory_id(product.getCategory().getId());
+        productGetResponse.setArrival_date(product.getArrival_date());
 
         return productGetResponse;
     }

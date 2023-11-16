@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.comprayahorraback.marketplace.dto_request.UpdatePasswordRequest;
+import com.comprayahorraback.marketplace.dto_request.UpdateUsercaRequest;
 import com.comprayahorraback.marketplace.service.UsercaService;
 
 @RestController
@@ -19,6 +20,26 @@ public class UsercaController {
         
     @Autowired
     private UsercaService usercaService;
+
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?>updateUserca(@RequestBody UpdateUsercaRequest updateUsercaRequest, @PathVariable Long id){
+        try{
+
+            boolean isUsercaUpdate = usercaService.updateUserca(id, updateUsercaRequest);
+            
+            if (isUsercaUpdate){
+                return new ResponseEntity<>("¡User update!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("User no exists", HttpStatus.NOT_FOUND);
+            }
+
+        } catch (ConstraintViolationException e){
+            return new ResponseEntity<>("Validation Error", HttpStatus.BAD_REQUEST);
+        } catch (Exception e){
+            return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PutMapping("/update/password/{id}")
     public ResponseEntity<?> updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest, @PathVariable Long id) {

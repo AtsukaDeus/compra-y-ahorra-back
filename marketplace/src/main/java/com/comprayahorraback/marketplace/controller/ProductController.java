@@ -24,11 +24,11 @@ public class ProductController {
 
         try {
             productService.createProduct(createProductRequest);
-            return new ResponseEntity<>("Producto Creado", HttpStatus.CREATED);
+            return new ResponseEntity<>("Product created", HttpStatus.CREATED);
         } catch (ConstraintViolationException e){
-            return new ResponseEntity<>("Error al crear Producto" + e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Validation Error" + e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error interno del servidor" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Internal Server Error" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
@@ -41,11 +41,11 @@ public class ProductController {
             if (productGetResponse != null) {
                 return new ResponseEntity<>(productGetResponse, HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Producto no encontrado", HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("Product Not Found", HttpStatus.NOT_FOUND);
             }
 
         } catch (ConstraintViolationException e) {
-            return new ResponseEntity<>("Error al traer el producto" + e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Validation Error" + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         
     }
@@ -57,12 +57,12 @@ public class ProductController {
             Product product = productService.updateProduct(id, productCreateRequest);
 
             if (product != null){
-                return new ResponseEntity<>("Producto actualizado", HttpStatus.OK);
+                return new ResponseEntity<>("Product Updated", HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("No se ha podido actualizar el Producto", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>("Validation Error", HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e){
-            return new ResponseEntity<>("Error en el servidor", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -71,11 +71,12 @@ public class ProductController {
     public ResponseEntity<?> deleteProduct(@PathVariable Long id){
         try{
             productService.deleteProduct(id);
-            return new ResponseEntity<>("Poducto eliminado ", HttpStatus.ACCEPTED);    
+            
+            return new ResponseEntity<>("Product Successfully Removed", HttpStatus.ACCEPTED);    
         }catch (ConstraintViolationException e) {
-            return new ResponseEntity<>("Error al Eliminar Producto" + e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Validation Error" + e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e){
-            return new ResponseEntity<>("Error interno del servidor" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Internal Server Error" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     } 
 }

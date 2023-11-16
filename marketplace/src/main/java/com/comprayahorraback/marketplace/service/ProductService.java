@@ -62,6 +62,7 @@ public class ProductService {
         
         if (productRepository.existsById(id)) {
             product = productMapper.mapToProductEntity(productCreateRequest);
+            product.setArrival_date(LocalDate.now());
             product.setId(id);
             productRepository.save(product);
         } else {
