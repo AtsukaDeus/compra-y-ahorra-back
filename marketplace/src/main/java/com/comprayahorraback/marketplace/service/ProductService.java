@@ -23,6 +23,7 @@ public class ProductService {
         Product product = productMapper.mapToProductEntity(createProductRequest);
 
         product.setArrival_date(LocalDate.now());
+        product.setLast_modified(LocalDate.now());
          
         return productRepository.save(product);
     }
@@ -62,7 +63,7 @@ public class ProductService {
         
         if (productRepository.existsById(id)) {
             product = productMapper.mapToProductEntity(productCreateRequest);
-            product.setArrival_date(LocalDate.now());
+            product.setLast_modified(LocalDate.now());
             product.setId(id);
             productRepository.save(product);
         } else {

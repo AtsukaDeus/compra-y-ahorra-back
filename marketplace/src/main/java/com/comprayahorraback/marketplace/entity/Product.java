@@ -31,6 +31,7 @@ public class Product {
     private double price;
     @Convert(converter = LocalDateConverter.class)
     private LocalDate arrival_date;
+    private LocalDate last_modified;
     private int stock;
 
     @ManyToOne
