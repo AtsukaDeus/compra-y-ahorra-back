@@ -8,31 +8,26 @@ import com.comprayahorraback.marketplace.entity.Product;
 public class ProductMapper {
 
     public Product mapToProductEntity(ProductCreateRequest createProductRequest){
-        Product product = new Product();
-        Category category = new Category();
 
-        product.setName(createProductRequest.getName());
-        product.setPrice(createProductRequest.getPrice());
-        product.setStock(createProductRequest.getStock());
-        category.setId(createProductRequest.getCategory_id());
-        
-        product.setCategory(category);
-
-        return product;
+        return Product.builder()
+                        .name(createProductRequest.getName())
+                        .price(createProductRequest.getPrice())
+                        .stock(createProductRequest.getStock())
+                        .category(Category.builder().id(createProductRequest.getCategory_id()).build())
+                        .build();
     }
 
     public ProductGetResponse mapToProductGetResponse(Product product){
-        ProductGetResponse productGetResponse = new ProductGetResponse();
 
-        productGetResponse.setId(product.getId());
-        productGetResponse.setName(product.getName());
-        productGetResponse.setPrice(product.getPrice());
-        productGetResponse.setStock(product.getStock());
-        productGetResponse.setCategory_name(product.getCategory().getName());
-        productGetResponse.setCategory_id(product.getCategory().getId());
-        productGetResponse.setArrival_date(product.getArrival_date());
-
-        return productGetResponse;
+        return ProductGetResponse.builder()
+                                .id(product.getId())
+                                .name(product.getName())
+                                .price(product.getPrice())
+                                .stock(product.getStock())
+                                .category_name(product.getCategory().getName())
+                                .category_id(product.getCategory().getId())
+                                .arrival_date(product.getArrival_date())
+                                .build();
     }
     
 }

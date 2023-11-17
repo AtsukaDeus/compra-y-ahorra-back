@@ -15,14 +15,17 @@ import java.util.List;
 
 import com.comprayahorraback.marketplace.configurations.LocalDateConverter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Sale {
     @Id

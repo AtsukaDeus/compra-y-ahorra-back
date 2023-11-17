@@ -24,7 +24,7 @@ public class ProductService {
 
         product.setArrival_date(LocalDate.now());
         product.setLast_modified(LocalDate.now());
-         
+
         return productRepository.save(product);
     }
 
@@ -39,8 +39,7 @@ public class ProductService {
         }
         
         return isProductDeleted;
-/*         Long productId = productDelete.getId();
-        productRepository.deleteById(productId); */
+
     }
 
     public ProductGetResponse getProduct(Long id) {

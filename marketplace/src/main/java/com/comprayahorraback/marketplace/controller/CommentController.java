@@ -22,7 +22,7 @@ import com.comprayahorraback.marketplace.service.CommentService;
 public class CommentController {
 
     @Autowired
-    CommentService commentService;
+    private CommentService commentService;
 
     @PostMapping("/create")
     public ResponseEntity<?> createComment(@RequestBody CommentRequest request){

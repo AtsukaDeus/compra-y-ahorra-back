@@ -30,12 +30,14 @@ public class UsercaController {
             
             if (isUsercaUpdate){
                 return new ResponseEntity<>("¡User update!", HttpStatus.OK);
+            
             } else {
                 return new ResponseEntity<>("User no exists", HttpStatus.NOT_FOUND);
             }
 
         } catch (ConstraintViolationException e){
             return new ResponseEntity<>("Validation Error", HttpStatus.BAD_REQUEST);
+            
         } catch (Exception e){
             return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
