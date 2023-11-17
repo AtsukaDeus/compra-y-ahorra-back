@@ -10,11 +10,13 @@ import com.comprayahorraback.marketplace.mappers.ProductMapper;
 import com.comprayahorraback.marketplace.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
     
     public Product createProduct(ProductCreateRequest createProductRequest){
 
@@ -70,6 +72,7 @@ public class ProductService {
             product = null;
         }
         return product;
-    }
+    } 
 
+   
 }

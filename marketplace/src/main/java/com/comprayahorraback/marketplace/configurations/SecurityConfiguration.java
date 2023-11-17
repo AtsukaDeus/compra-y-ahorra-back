@@ -31,6 +31,9 @@ public class SecurityConfiguration {
                                              "/product/get/{id}",
                                              "/product/delete/{id}",
                                              "/product/update/{id}",
+                                             "/image/create",
+                                             "/image/update/{id}",
+                                             "/image/delete/{id}",
                                              "/sale/get/all/**",
                                              "/admin/**",
                                              "/category/**"

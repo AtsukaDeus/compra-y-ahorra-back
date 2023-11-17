@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 import com.comprayahorraback.marketplace.configurations.LocalDateConverter;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Product {
     
@@ -37,6 +39,5 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = true)
     private Category category;
-
 }
 

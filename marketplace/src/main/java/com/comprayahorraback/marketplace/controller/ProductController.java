@@ -62,6 +62,7 @@ public class ProductController {
                 return new ResponseEntity<>("Validation Error", HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e){
+            e.printStackTrace();
             return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -71,7 +72,7 @@ public class ProductController {
     public ResponseEntity<?> deleteProduct(@PathVariable Long id){
         try{
             productService.deleteProduct(id);
-            
+
             return new ResponseEntity<>("Product Successfully Removed", HttpStatus.ACCEPTED);    
         }catch (ConstraintViolationException e) {
             return new ResponseEntity<>("Validation Error" + e.getMessage(), HttpStatus.BAD_REQUEST);

@@ -3,6 +3,7 @@ package com.comprayahorraback.marketplace.mappers;
 import com.comprayahorraback.marketplace.dto_request.ProductCreateRequest;
 import com.comprayahorraback.marketplace.dto_response.ProductGetResponse;
 import com.comprayahorraback.marketplace.entity.Category;
+
 import com.comprayahorraback.marketplace.entity.Product;
 
 public class ProductMapper {
@@ -14,10 +15,10 @@ public class ProductMapper {
         product.setName(createProductRequest.getName());
         product.setPrice(createProductRequest.getPrice());
         product.setStock(createProductRequest.getStock());
-        category.setId(createProductRequest.getCategory_id());
-        
-        product.setCategory(category);
 
+        category.setId(createProductRequest.getCategory_id());
+        product.setCategory(category);
+    
         return product;
     }
 
