@@ -27,7 +27,7 @@ public class AuthService {
             .run(registerRequest.getRun())
             .name(registerRequest.getName())
             .password(registerRequest.getPassword())
-            .role(Role.ROLE_ADMIN) // ROLE_CLIENT or ROLE_ADMIN
+            .role(Role.ROLE_CLIENT) // ROLE_CLIENT or ROLE_ADMIN
             .email(registerRequest.getEmail())
             .locked(false)
             .build();
